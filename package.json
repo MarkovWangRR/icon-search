@@ -1,0 +1,26 @@
+{
+  "name": "icon-search",
+  "version": "0.1.0",
+  "description": "Search across icon libraries by keyword and return the best-matching valid SVG icon.",
+  "type": "module",
+  "bin": {
+    "icon-search": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --experimental-strip-types --no-warnings src/cli.ts",
+    "start": "node dist/cli.js",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "license": "MIT"
+}
