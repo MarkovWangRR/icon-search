@@ -2,6 +2,7 @@ import type { IconProvider } from "./providers/types.js";
 import { IconifyProvider } from "./providers/iconify.js";
 import { BrandProvider } from "./providers/brand.js";
 import { VendorProvider } from "./providers/vendor.js";
+import { SvglProvider } from "./providers/svgl.js";
 import { rankCandidates } from "./ranker.js";
 import { expandQuery } from "./synonyms.js";
 import { normalizeSvg, validateSvg } from "./svg.js";
@@ -24,7 +25,12 @@ export class IconSearch {
   private readonly byName: Map<string, IconProvider>;
 
   constructor(
-    providers: IconProvider[] = [new IconifyProvider(), new BrandProvider(), new VendorProvider()],
+    providers: IconProvider[] = [
+      new IconifyProvider(),
+      new BrandProvider(),
+      new VendorProvider(),
+      new SvglProvider(),
+    ],
   ) {
     this.providers = providers;
     this.byName = new Map(providers.map((p) => [p.name, p]));

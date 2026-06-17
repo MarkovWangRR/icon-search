@@ -22,6 +22,9 @@ const SET_BOOST: Record<string, number> = {
   "simple-icons": 4,
   "skill-icons": 3,
   cib: 2,
+  // SVGL curated brand logos — just below Iconify `logos` so well-established
+  // brands keep their tuned result, while SVGL fills gaps logos lacks.
+  svgl: 7,
   // Official cloud-vendor architecture icons — authoritative for cloud
   // services, so they edge out generic brand logos for AWS/Azure/GCP queries.
   aws: 9,
@@ -32,7 +35,7 @@ const SET_BOOST: Record<string, number> = {
 const STYLE_KEYWORDS = ["outline", "fill", "filled", "line", "bold", "duotone", "round", "sharp", "thin", "light", "twotone"];
 
 /** Colored brand-logo sets — preferred for brand/product names (docker, redis). */
-const BRAND_LOGO_SETS = new Set(["logos", "devicon", "simple-icons", "skill-icons", "cib"]);
+const BRAND_LOGO_SETS = new Set(["logos", "devicon", "simple-icons", "skill-icons", "cib", "svgl"]);
 /** Official cloud-vendor architecture sets — carry some generic-named noise. */
 const VENDOR_ARCH_SETS = new Set(["aws", "azure", "gcp"]);
 

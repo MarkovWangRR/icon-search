@@ -104,15 +104,19 @@ icon-search <keyword...> [options]
 
 ## How matching works
 
-Three layers run in parallel on every call and merge into one ranked list:
+Four sources run in parallel on every call and merge into one ranked list:
 
 | Layer | Handles | How |
 | --- | --- | --- |
 | **Iconify** (`providers/iconify.ts`) | generic UI icons (`home`, `settings`) | Iconify full-text search via the public `api.iconify.design` |
 | **Brand** (`providers/brand.ts`) | brand logos (`docker`, `kubernetes`, `redis`) | fetches full inventories of brand sets (`logos`, `devicon`, `simple-icons`, …) into memory, matches locally |
 | **Vendor** (`providers/vendor.ts`) | cloud **services** (`emr`, `sagemaker`, `cosmos db`, `bigquery`) | official AWS/Azure/GCP SVGs from [`tf2d2/icons`](https://github.com/tf2d2/icons), indexed in memory |
+| **SVGL** (`providers/svgl.ts`) | modern company/product logos (`langchain`, `clerk`, `kimi`) | curated catalog from [svgl.app](https://svgl.app); fills brands Iconify lacks/lags |
 
-Iconify's full-text search has poor recall for product names — `s3` is named
+These sources deliberately complement rather than overlap: Iconify is itself a
+meta-aggregator of 150+ open sets, so the extra layers target what it misses —
+cloud service icons and freshly-added brand logos. Iconify's full-text search
+also has poor recall for product names — `s3` is named
 `logos:aws-s3`, `kafka` is `simple-icons:apachekafka`, and many cloud services
 aren't in Iconify at all. The brand/vendor layers fix this by matching against
 complete inventories with **vendor-prefix stripping** (`aws-`, `azure-`,
